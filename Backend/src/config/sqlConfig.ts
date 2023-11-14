@@ -8,7 +8,7 @@ export const sqlConfig = {
   // "database: process.env.DB_NAME as string,"
   user: "sa",
   password: "joshua",
-  database: "projectManagementSystem",
+  database: "TOUR",
   server: "localhost",
   pool: {
     max: 10,
@@ -21,7 +21,7 @@ export const sqlConfig = {
   },
 };
 
-async function TestConnection() {
+ export async function TestConnection() {
   const pool = await sql.connect(sqlConfig);
   if (pool.connected) {
     console.log("connected to database");
@@ -30,4 +30,3 @@ async function TestConnection() {
   }
 }
 
-TestConnection();

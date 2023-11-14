@@ -17,7 +17,7 @@ export const registerUser = async (req: Request, res: Response) => {
   try {
     let { userName, email, password, phone_no } = req.body;
 
-    const { error } = userRegisterValidationSchema.validate(req.body);
+    let { error } = userRegisterValidationSchema.validate(req.body);
 
     if (error) {
       return res.status(400).json({ error: error.details[0].message });
@@ -46,7 +46,7 @@ export const registerUser = async (req: Request, res: Response) => {
       .input("email", mssql.VarChar, email)
       .input("password", mssql.VarChar, hashedPwd)
       .input("phone_no", mssql.VarChar, phone_no)
-      .execute("registerUser");
+      .execute("registerUsers");
 
     return res.status(200).json({
       message: "User registered successfully",

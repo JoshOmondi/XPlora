@@ -6,14 +6,11 @@
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "Backend/dist",
+    "outDir": "./dist",
     "baseUrl": ".",
     "paths": {
       "*": ["node_modules/*"]
     }
-    
   },
   "Rootdir": "src"
-  
 }
-
