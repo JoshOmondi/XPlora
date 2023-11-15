@@ -1,10 +1,10 @@
 
 post http://localhost:3500/user/register
-
 Content-Type: application/json
+
 {
-    "userName":"hhhhhhhhhh",
-    "email":"joshhomo@gmail.com",
-    "password":"12345678",
-    "phone_no":"0708656364"
+    "userName":"Steve",
+    "email":"steve@gmail.com",
+    "password":"33245688",
+    "phone_no":"0712356367"
 }

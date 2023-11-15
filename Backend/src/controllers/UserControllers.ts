@@ -15,7 +15,7 @@ import { v4 } from "uuid";
 //register user
 export const registerUser = async (req: Request, res: Response) => {
   try {
-    let { userName, email, password, phone_no } = req.body;
+    let {  userName, email, password, phone_no } = req.body;
 
     let { error } = userRegisterValidationSchema.validate(req.body);
 
@@ -42,6 +42,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
     const data = await pool
       .request()
+      .input("userID", mssql.VarChar, userID)
       .input("userName", mssql.VarChar, userName)
       .input("email", mssql.VarChar, email)
       .input("password", mssql.VarChar, hashedPwd)
