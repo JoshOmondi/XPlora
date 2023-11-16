@@ -3,8 +3,8 @@ post http://localhost:3500/user/register
 Content-Type: application/json
 
 {
-    "userName":"Steve",
-    "email":"steve@gmail.com",
+    "userName":"Steven Mark",
+    "email":"steveochieng@gmail.com",
     "password":"33245688",
-    "phone_no":"0712356367"
+    "phone_no":"0712354467"
 }

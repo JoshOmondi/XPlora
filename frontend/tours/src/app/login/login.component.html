@@ -1,24 +1,27 @@
     <app-navbar></app-navbar>
-    <div class="form-box-login bg-white p-8 rounded-lg shadow-md max-w-md mx-auto mt-16">
+    <div class="min-h-screen flex items-center justify-center">
+  <form *ngIf="loggingForm" [formGroup]="loggingForm" (ngSubmit)="onLoginSuccess()" class="bg-white p-8 rounded-md shadow-md">>
     <h2 class="text-2xl font-bold mb-6">Login</h2>
-    <form action="#">
-        <div class="mb-4">
-            <label for="#" class="text-sm text-gray-600">Email</label>
-            <input type="email" class="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-blue-500" required>
-        </div>
-        <div class="mb-4">
-            <label for="#" class="text-sm text-gray-600">Password</label>
-            <input type="password" class="w-full border border-gray-300 px-3 py-2 rounded-md focus:outline-none focus:border-blue-500" required>
-        </div>
-        <div class="flex items-center mb-4">
-            <input type="checkbox" class="mr-2">
-            <label for="#" class="text-sm text-gray-600">Save password</label>
-            <a href="#" class="ml-auto text-sm text-blue-500">Forgot password?</a>
-        </div>
-        <button  class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300">Login</button>
-        <div class="mt-4">
-            <p class="text-sm text-gray-600">Don't have an account? <a routerLink="/admin" class="text-blue-500">Register</a></p>
-        </div>
-    </form>
+
+    <div class="mb-4">
+      <label for="email" class="block text-sm font-medium text-gray-600">Email</label>
+      <input type="email" id="email" formControlName="email" class="mt-1 p-2 w-full border rounded-md">
+    </div>
+
+
+    <div class="mb-6">
+      <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
+      <input type="password" id="password" formControlName="password" class="mt-1 p-2 w-full border rounded-md">
+    </div>
+
+    
+    <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300">Login</button>
+
+    <!-- Optional: Add a link to a registration page or password reset -->
+    <p class="mt-4 text-sm text-gray-600">
+      Don't have an account? <a href="/register" class="text-blue-500">Register here</a>
+    </p>
+  </form>
 </div>
+
 
