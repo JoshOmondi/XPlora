@@ -1,7 +1,7 @@
 --create DATABASE XPlora
 -- -- -- -- alter database Project_Management MODIFY name  = XPlora
 --use XPlora
--- select * from Users
+select * from Users
 use TOUR
 
 create TABLE Users (

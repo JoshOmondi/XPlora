@@ -1,20 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http'; 
+import { HttpClient } from '@angular/common/http';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   registrationForm: FormGroup;
 
   constructor(
+    private userService: UserService,
     private fb: FormBuilder,
-    private router: Router,
-    private http: HttpClient 
+    private router: Router
   ) {
     this.registrationForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -23,16 +24,18 @@ export class RegisterComponent {
     });
   }
 
-  onRegistrationSuccess() {
+  ngOnInit(): void {
+   
+  }
+
+  createUser() {
     const userData = this.registrationForm.value;
 
-    // Send a POST request to your backend API
-    this.http.post('http://localhost:3500/api/register', userData).subscribe(
+    this.userService.createUser(userData).subscribe(
       (response: any) => {
         console.log(response);
         console.log('User registered successfully.');
 
-        // Navigate to the login page after successful registration
         this.router.navigate(['/login']);
       },
       (error: any) => {

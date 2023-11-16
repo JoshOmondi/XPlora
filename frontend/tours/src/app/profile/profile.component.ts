@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserService } from '../user.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,20 +9,27 @@ import { UserService } from '../user.service';
 })
 export class ProfileComponent implements OnInit {
   userProfileForm: FormGroup | undefined;
+  isLoading = true; 
 
   constructor(private fb: FormBuilder, private userService: UserService) {}
 
   ngOnInit(): void {
-    // Assuming you have a method in your UserService to retrieve user data
-    const userData = this.userService.getUserData();
-    this.initializeForm(userData);
+    this.userService.getUserData().subscribe(
+      (userData: any) => {
+        this.initializeForm(userData);
+        this.isLoading = false; 
+      },
+      (error: any) => {
+        console.error('Error fetching user data:', error);
+        this.isLoading = false; 
+      }
+    );
   }
 
   private initializeForm(userData: any): void {
     this.userProfileForm = this.fb.group({
       username: [userData.username || '', [Validators.required]],
       email: [userData.email || '', [Validators.required, Validators.email]],
-      // Add more form controls for other user profile fields
     });
   }
 
@@ -32,15 +39,15 @@ export class ProfileComponent implements OnInit {
       console.log('Updated Profile Data:', updatedProfileData);
 
       this.userService.updateUserData(updatedProfileData).subscribe(
-        (response) => {
+        (response: any) => {
           console.log('Profile updated successfully:', response);
         },
-        (error) => {
+        (error: any) => {
           console.error('Error updating profile:', error);
         }
       );
     } else {
-      console.log('Form is not valid');
+      console.log('Form is not valid:', this.userProfileForm?.errors);
     }
   }
 }
