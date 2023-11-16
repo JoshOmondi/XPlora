@@ -12,6 +12,7 @@ import { AboutComponent } from './about/about.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NavbarComponent,
     AboutComponent,
     DashboardComponent,
+    ProfileComponent,
+    
   ],
   imports: [BrowserModule, AppRoutingModule, RouterModule, ReactiveFormsModule],
   providers: [],
