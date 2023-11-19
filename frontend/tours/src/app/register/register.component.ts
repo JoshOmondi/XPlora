@@ -1,46 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { UserService } from '../services/user.service';
+// your.component.ts
+import { Component } from '@angular/core';
+import { RegisterService } from '../services/register.service';
+import { Register } from '../interface/register';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit {
-  registrationForm: FormGroup;
+export class RegisterComponent {
+  user: Register = {
+    userName: '',
+    email: '',
+    phoneNo: '',
+    password: '',
+  };
+  router: any;
 
-  constructor(
-    private userService: UserService,
-    private fb: FormBuilder,
-    private router: Router
-  ) {
-    this.registrationForm = this.fb.group({
-      username: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
-  }
+  constructor(private registerService: RegisterService) {}
 
-  ngOnInit(): void {
-   
-  }
-
-  createUser() {
-    const userData = this.registrationForm.value;
-
-    this.userService.createUser(userData).subscribe(
+  onSubmit() {
+    this.registerService.registerUser(this.user).subscribe(
       (response: any) => {
-        console.log(response);
-        console.log('User registered successfully.');
-
+        console.log('Registration successful:', response);
         this.router.navigate(['/login']);
+
+        this.registerService.saveUserDataLocally(this.user);
       },
       (error: any) => {
-        console.error(error);
+        console.error('Registration failed:', error);
       }
     );
   }
 }
+
+

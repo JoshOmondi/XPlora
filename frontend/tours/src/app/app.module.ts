@@ -12,8 +12,9 @@ import { AboutComponent } from './about/about.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProfileComponent } from './profile/profile.component';
+// import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     AboutComponent,
     DashboardComponent,
-    ProfileComponent,
+    // ProfileComponent,
+    UserProfileComponent,
+    // ProfileComponent,
   ],
   imports: [
     BrowserModule,

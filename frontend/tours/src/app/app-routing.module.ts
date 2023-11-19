@@ -5,7 +5,7 @@ import { UserLoginComponent } from './login/login.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AboutComponent } from './about/about.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { ProfileComponent } from './profile/profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -13,11 +13,11 @@ const routes: Routes = [
   { path: 'login', component: UserLoginComponent },
   { path: 'about', component: AboutComponent },
   { path: 'user-dashboard', component: UserDashboardComponent },
-  { path: 'profile', component: ProfileComponent}
+  { path: 'profile', component: UserProfileComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

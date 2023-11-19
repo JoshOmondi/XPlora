@@ -3,8 +3,119 @@ post http://localhost:3500/user/register
 Content-Type: application/json
 
 {
-    "userName":"Steven Mark",
-    "email":"steveochieng@gmail.com",
-    "password":"33245688",
-    "phone_no":"0712354467"
+    "userName":"Steenes Marko",
+    "email":"stevochieng@gmail.com",
+    "password":"331145688",
+    "phone_no":"0721354433"
+    
+}
+
+
+###
+#login user
+POST http://localhost:4600/user/login
+Content-Type: application/json
+
+{
+    "email":"joshua.ochieng@thejitu.com",
+    "password":"379226"
+
+}
+
+
+###
+#get all user
+
+get http://localhost:4600/user/
+token :eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJDM0M5RUZCMC0wQ0FCLTQ4NTYtOUQ5QS1BODE5NkE2MDVBQUQiLCJ1c2VyTmFtZSI6Ikpvc2h1YSIsImVtYWlsIjoiam9zaHVhLm9jaGllbmdAdGhlaml0dS5jb20iLCJBc3NpZ25lZFByb2plY3RJRCI6bnVsbCwicm9sZSI6ImVtcGxveWVlIiwiV2VsY29tZWQiOmZhbHNlLCJpc0Fzc2lnbmVkIjpmYWxzZSwiaWF0IjoxNjk5NDQ3MzU1LCJleHAiOjE2OTk0NTA5NTV9.BhaZjKQghSAfaFg5K0J0skrK5JgjGGr87rCaRVe6Dg0
+
+
+###
+#check user details
+GET http://localhost:4600/user/check_user_details
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI3MWU0OWQ3Mi0yNjIyLTRiZWItOTQxYy1kMDZiZGJkZjhkMzciLCJ1c2VyTmFtZSI6Ik1pY2hhZWwgT3RpZW5vIiwiZW1haWwiOiJtaWNoZWFsdmVudW0wMDdAZ21haWwuY29tIiwiaXNBZG1pbiI6ZmFsc2UsIkFzc2lnbmVkUHJvamVjdElEIjpudWxsLCJFbWFpbFNlbnQiOmZhbHNlLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTg4NzU0NTIsImV4cCI6MTY5ODg3OTA1Mn0.qsQi-r_jZVoAihToyO2HRNOOEZttROjDuBWIm1-lofA
+
+
+
+###
+#admin assign project
+
+POST http://localhost:4600/project/assignProject
+Content-Type: application/json
+
+{
+   
+    "projectName": "BackgroundSerices",
+    "projectDescription": "build company chatbot",
+    "endDate": "2023-11-9",
+    "AssignedUserEmail": "joshua.ochieng@thejitu.com",  
+    "AssignedUserName": "Joshua Ochieng"  
+}
+
+###
+#delete project
+DELETE  http://localhost:4600/project/deleteProject
+Content-Type: application/json
+
+{
+   
+    "projectID":"c976d311-9c7d-4c65-9279-4915decdad33"
+   
+}
+
+
+###
+#get all projects
+get  http://localhost:4600/project/
+
+###
+#get single project
+get  http://localhost:4600/project/singleProject
+Content-Type: application/json
+
+{
+   
+    "AssignedUserEmail":"joshua.ochieng@thejitu.com"
+   
+}
+
+###
+#update completed project
+post http://localhost:4600/project/updateProject
+Content-Type: application/json
+
+{
+   
+    "projectID":"1da4856b-edde-47f2-90d4-603913e26b7f"
+   
+}
+
+###
+#fetch All Users
+
+get http://localhost:4600/project/getUsers
+
+
+###
+#user updates status
+
+post http://localhost:4600/project/updateStatus
+Content-Type: application/json
+
+{
+   
+    "AssignedUserEmail":"joshua.ochieng@thejitu.com",
+    "NewStatus":"completed"
+   
+}
+
+###
+#get project status
+get http://localhost:4600/project/getStatus
+Content-Type: application/json
+
+{
+   
+    "AssignedUserEmail":"joshua.ochieng@thejitu.com"
+   
 }

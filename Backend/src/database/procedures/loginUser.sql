@@ -1,6 +1,6 @@
 
 
--- use projectManagementSystem
+-- use TOUR
 
 create  PROCEDURE loginUser(
     @email varchar(200),

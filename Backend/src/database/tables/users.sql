@@ -1,6 +1,6 @@
---create DATABASE XPlora
--- -- -- -- alter database Project_Management MODIFY name  = XPlora
---use XPlora
+--create DATABASE TOUR
+-- -- -- -- alter database Project_Management MODIFY name  = TOUR
+--use TOUR
 select * from Users
 use TOUR
 
