@@ -3,22 +3,23 @@ post http://localhost:3500/user/register
 Content-Type: application/json
 
 {
-    "userName":"Steenes Marko",
-    "email":"stevochieng@gmail.com",
-    "password":"331145688",
-    "phone_no":"0721354433"
+    "userName":"James Kariuki",
+    "email":"jameskariuki@gmail.com",
+    "phone_no":"0708090809",
+     "password":"James!123"
+     
     
 }
 
 
 ###
 #login user
-POST http://localhost:4600/user/login
+POST http://localhost:3500/user/login
 Content-Type: application/json
 
 {
-    "email":"joshua.ochieng@thejitu.com",
-    "password":"379226"
+    "email":"jameskariuki@gmail.com",
+    "password":"James!123"
 
 }
 
@@ -32,8 +33,8 @@ token :eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJDM0M5RUZCMC0wQ0FCLTQ4
 
 ###
 #check user details
-GET http://localhost:4600/user/check_user_details
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI3MWU0OWQ3Mi0yNjIyLTRiZWItOTQxYy1kMDZiZGJkZjhkMzciLCJ1c2VyTmFtZSI6Ik1pY2hhZWwgT3RpZW5vIiwiZW1haWwiOiJtaWNoZWFsdmVudW0wMDdAZ21haWwuY29tIiwiaXNBZG1pbiI6ZmFsc2UsIkFzc2lnbmVkUHJvamVjdElEIjpudWxsLCJFbWFpbFNlbnQiOmZhbHNlLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2OTg4NzU0NTIsImV4cCI6MTY5ODg3OTA1Mn0.qsQi-r_jZVoAihToyO2HRNOOEZttROjDuBWIm1-lofA
+GET http://localhost:3500/user/check_user_details
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIwNTg5OTkzNS0wNTgzLTQyM2EtOTVmMy01NzNhZTYyOGRjMjUiLCJ1c2VyTmFtZSI6IkphbWVzIEthcml1a2kiLCJlbWFpbCI6ImphbWVza2FyaXVraUBnbWFpbC5jb20iLCJBc3NpZ25lZFByb2plY3RJRCI6bnVsbCwicm9sZSI6ImVtcGxveWVlIiwiV2VsY29tZWQiOmZhbHNlLCJpc0Fzc2lnbmVkIjpmYWxzZSwiaWF0IjoxNzAwNDcxMjMzLCJleHAiOjE3MDA0NzQ4MzN9.h5ee7HD_vKjqM4lQTh_uoENexbOAuv28E0ZFL-HH9-w
 
 
 
@@ -118,4 +119,16 @@ Content-Type: application/json
    
     "AssignedUserEmail":"joshua.ochieng@thejitu.com"
    
+}
+
+###
+#login user
+get http://localhost:3500/user/singleUser
+Content-Type: application/json
+
+{
+    "email":"savageochieng@gmail.com"
+    
+
+
 }

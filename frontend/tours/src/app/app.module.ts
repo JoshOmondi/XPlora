@@ -11,10 +11,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AboutComponent } from './about/about.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from './dashboard/dashboard.component';
+// import { DashboardComponent } from './dashboard/dashboard.component';
 // import { ProfileComponent } from './profile/profile.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     UserDashboardComponent,
     NavbarComponent,
     AboutComponent,
-    DashboardComponent,
+    // DashboardComponent,
     // ProfileComponent,
     UserProfileComponent,
+    SearchPipe,
     // ProfileComponent,
   ],
   imports: [

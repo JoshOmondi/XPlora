@@ -143,4 +143,27 @@ export const checkUserDetails = async (req: ExtendedUser, res: Response) => {
 
 // reload user page
 
-//assign again a completed project
+//get single user 
+export const getSingleUsers = async (req: Request, res: Response) => {
+  try {
+     const { email } = req.body;
+
+    const pool = await mssql.connect(sqlConfig);
+       let user = await(
+         await pool
+           .request()
+           .input("email", mssql.VarChar, email)
+           .execute("getSingleUser")
+       ).recordset;
+
+    return res.json({
+      message:"fetched successfully",user
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: error,
+    });
+  }
+};
+

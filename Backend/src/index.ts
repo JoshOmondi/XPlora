@@ -13,6 +13,7 @@ app.use(cors());
 
 app.use("/user", user_router);
 app.use("/project", project_router);
+// app.use("/register", user_router);
 
 app.listen(port, () => {
   console.log(`Project management running on port ${port}`);

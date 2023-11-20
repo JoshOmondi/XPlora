@@ -6,21 +6,45 @@
     </div>
     <nav class="space-y-2 py-4">
       <a href="#" class="block px-4 py-2 text-sm" routerLink="/">Dashboard</a>
-      <a href="#" class="block px-4 py-2 text-sm" routerLink="/profile">Profile</a>
-      <a href="#" class="block px-4 py-2 text-sm" routerLink="/settings">Settings</a>
-      <a href="#" class="block px-4 py-2 text-sm" routerLink="/logout">Logout</a>
+      <a href="#" class="block px-4 py-2 text-sm" routerLink="/profile"
+        >Profile</a
+      >
+      <a href="#" class="block px-4 py-2 text-sm" routerLink="/settings"
+        >Settings</a
+      >
+      <a href="#" class="block px-4 py-2 text-sm" routerLink="/logout"
+        >Logout</a
+      >
     </nav>
   </aside>
 
   <!-- Main Content -->
   <main class="flex-1 p-5">
-    <div class="flex justify-between items-center border-b-2 border-gray-300 pb-3 mb-5">
+    <div
+      class="flex justify-between items-center border-b-2 border-gray-300 pb-3 mb-5"
+    >
       <h1 class="text-3xl font-bold">WELCOME TO TOURS</h1>
-      <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Book a ticket Now!</button>
+      <div class="flex items-center">
+        <input
+          type="text"
+          placeholder="Search..."
+          class="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
+          v-model="searchQuery"
+        />
+        <button
+          class="bg-blue-500 text-white px-4 py-2 ml-2 rounded-md hover:bg-blue-600"
+        >
+          Search
+        </button>
+      </div>
+      <button
+        class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+      >
+        Book a ticket Now!
+      </button>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-     
       <div class="bg-white p-6 rounded-md shadow-md">
         <h2 class="text-xl font-bold mb-4">Total Orders</h2>
         <p class="text-4xl font-bold text-blue-500">128</p>
@@ -36,6 +60,9 @@
         <p class="text-4xl font-bold text-purple-500">42</p>
       </div>
     </div>
+    <div *ngIf="userDetails" class="mb-5">
+      <h2 class="text-xl font-bold mb-2">User Details</h2>
+      <p>Email: {{ userDetails.email }}</p>
+    </div>
   </main>
 </div>
-

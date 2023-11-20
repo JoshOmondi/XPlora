@@ -1,4 +1,4 @@
--- use projectManagementSystem
+-- use TOUR
 -- drop procedure deleteProject
 -- select * from Projects
 -- CREATE PROCEDURE deleteProject

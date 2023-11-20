@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class UserLoginComponent implements OnInit {
   loggingForm: FormGroup | undefined;
+  userService: any;
 
   constructor(private fb: FormBuilder, private router: Router) {}
 
@@ -23,5 +24,9 @@ export class UserLoginComponent implements OnInit {
     console.log('Login successful!');
 
      this.router.navigate(['/user-dashboard']);
+      const userDetails = {
+        /* User details from login */
+      };
+      this.userService.loginUser(userDetails);
   }
 }
