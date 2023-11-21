@@ -128,7 +128,17 @@ Content-Type: application/json
 
 {
     "email":"savageochieng@gmail.com"
-    
 
+}
 
+###
+#creatbooking
+
+post http://localhost:3500/user/book
+Content-Type: application/json
+
+{
+  "tourist_name": "Joshua Dede",
+  "booking_date": "31/12/2024"
+   
 }

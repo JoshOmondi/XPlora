@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import mssql from "mssql";
+import mssql, { pool } from "mssql";
 import bcrypt from "bcrypt";
 
 import jwt from "jsonwebtoken";
@@ -11,11 +11,12 @@ import {
 } from "../validators/UserValidators";
 import { ExtendedUser } from "../middlewares/tokenVerify";
 import { v4 } from "uuid";
+import { connection, Query } from "mongoose";
 
 //register user
 export const registerUser = async (req: Request, res: Response) => {
   try {
-    let {  userName, email, password, phone_no } = req.body;
+    let { userName, email, password, phone_no } = req.body;
 
     let { error } = userRegisterValidationSchema.validate(req.body);
 
@@ -143,21 +144,22 @@ export const checkUserDetails = async (req: ExtendedUser, res: Response) => {
 
 // reload user page
 
-//get single user 
+//get single user
 export const getSingleUsers = async (req: Request, res: Response) => {
   try {
-     const { email } = req.body;
+    const { email } = req.body;
 
     const pool = await mssql.connect(sqlConfig);
-       let user = await(
-         await pool
-           .request()
-           .input("email", mssql.VarChar, email)
-           .execute("getSingleUser")
-       ).recordset;
+    let user = await (
+      await pool
+        .request()
+        .input("email", mssql.VarChar, email)
+        .execute("getSingleUser")
+    ).recordset;
 
     return res.json({
-      message:"fetched successfully",user
+      message: "fetched successfully",
+      user,
     });
   } catch (error) {
     console.error(error);
@@ -167,3 +169,27 @@ export const getSingleUsers = async (req: Request, res: Response) => {
   }
 };
 
+
+// Controller function for creating a booking
+export const createBooking = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { tourist_name,  booking_date } = req.body;
+    let tour_id = v4()
+    // Call the CreateBooking stored procedure
+    const result: mssql.IProcedureResult<any> = await pool
+      .request()
+      .input("p_tourist_name", mssql.VarChar, tourist_name)
+      .input("p_tour_id", mssql.Int, tour_id)
+      .input("p_booking_date", mssql.Date, booking_date)
+      .execute("CreateBooking");
+
+    // Return the result
+    res.json({ message: result.recordset[0].message });
+  } catch (error) {
+    console.error("Error creating booking:", error);
+    res.status(500).json({ message: "Error creating booking" });
+  }
+};

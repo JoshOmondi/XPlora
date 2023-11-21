@@ -1,6 +1,6 @@
-    <app-navbar></app-navbar>
-    <div class="min-h-screen flex items-center justify-center">
-  <form *ngIf="loggingForm" [formGroup]="loggingForm" (ngSubmit)="onLoginSuccess()" class="bg-white p-8 rounded-md shadow-md">>
+<app-navbar></app-navbar>
+<div class="min-h-screen flex items-center justify-center">
+  <form *ngIf="loggingForm" [formGroup]="loggingForm" (ngSubmit)="onLoginSuccess()" class="bg-white p-8 rounded-md shadow-md">
     <h2 class="text-2xl font-bold mb-6">Login</h2>
 
     <div class="mb-4">
@@ -8,20 +8,14 @@
       <input type="email" id="email" formControlName="email" class="mt-1 p-2 w-full border rounded-md">
     </div>
 
-
     <div class="mb-6">
       <label for="password" class="block text-sm font-medium text-gray-600">Password</label>
       <input type="password" id="password" formControlName="password" class="mt-1 p-2 w-full border rounded-md">
     </div>
 
-    
-    <button type="submit" class="w-full mt-4 bg-blue-500 hover:bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded rounded shadow-lg focus:outline-none focus:shadow-outline-blue">Login</button>
-
-    <!-- Optional: Add a link to a registration page or password reset -->
+    <button type="submit" class="w-full mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded rounded shadow-lg focus:outline-none focus:shadow-outline-blue">Login</button>
     <p class="mt-4 text-sm text-gray-600">
-      Don't have an account? <a href="/register" class="text-blue-500">Register here</a>
+      Don't have an account? <a routerLink="/register" class="text-blue-500">Register here</a>
     </p>
   </form>
 </div>
-
-

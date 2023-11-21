@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
+import { Login } from '../interface/login';
 
 @Component({
   selector: 'app-user-login',
@@ -9,24 +11,37 @@ import { Router } from '@angular/router';
 })
 export class UserLoginComponent implements OnInit {
   loggingForm: FormGroup | undefined;
-  userService: any;
+  // formBuilder: any;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private loginService: LoginService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.loggingForm = this.fb.group({
+    this.loggingForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   onLoginSuccess(): void {
-    console.log('Login successful!');
+    if (this.loggingForm) {
+      const user: Login = this.loggingForm.value;
 
-     this.router.navigate(['/user-dashboard']);
-      const userDetails = {
-        /* User details from login */
-      };
-      this.userService.loginUser(userDetails);
+      this.loginService.login(user).subscribe(
+        (response: any) => {
+          console.log('Login successful!:', response);
+
+          localStorage.setItem('authToken', response.token);
+
+          this.router.navigate(['/user-dashboard']);
+        },
+        (error: any) => {
+          console.error('Login failed:', error);
+        }
+      );
+    }
   }
 }
