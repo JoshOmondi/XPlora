@@ -132,13 +132,17 @@ Content-Type: application/json
 }
 
 ###
-#creatbooking
-
+###creatbooking
 post http://localhost:3500/user/book
 Content-Type: application/json
 
 {
-  "tourist_name": "Joshua Dede",
-  "booking_date": "31/12/2024"
+  "tour_id": "34545",
+  "tourist_name": "annan",
+  "booking_date": "2024-12-31",
+  "total_seats": 20,
+  "price": 45,
+  "tour_name": "Mombasa 2 Raha"
    
 }
+

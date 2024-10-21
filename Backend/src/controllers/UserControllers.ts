@@ -12,6 +12,7 @@ import {
 import { ExtendedUser } from "../middlewares/tokenVerify";
 import { v4 } from "uuid";
 import { connection, Query } from "mongoose";
+import { log } from "console";
 
 //register user
 export const registerUser = async (req: Request, res: Response) => {
@@ -174,20 +175,30 @@ export const getSingleUsers = async (req: Request, res: Response) => {
 export const createBooking = async (
   req: Request,
   res: Response
-): Promise<void> => {
+)=> {
   try {
-    const { tourist_name,  booking_date } = req.body;
-    let tour_id = v4()
+    const { tour_id,tourist_name, booking_date, total_seats, price, tour_name } = req.body;
+    let booking_id = v4()
     // Call the CreateBooking stored procedure
-    const result: mssql.IProcedureResult<any> = await pool
+     const pool = await mssql.connect(sqlConfig);
+    const result = await pool
       .request()
-      .input("p_tourist_name", mssql.VarChar, tourist_name)
-      .input("p_tour_id", mssql.Int, tour_id)
-      .input("p_booking_date", mssql.Date, booking_date)
+      .input("booking_id", mssql.VarChar, booking_id)
+      .input("tourist_name", mssql.VarChar, tourist_name)
+      .input("tour_id", mssql.Int, tour_id)
+      .input("booking_date", mssql.Date, booking_date)
+      .input("total_seats", mssql.Int, total_seats)
+      .input("price", mssql.Decimal(10, 2), price)
+      .input("tour_name", mssql.VarChar, tour_name)
       .execute("CreateBooking");
 
+
+      let new_res=result
+log(new_res)
     // Return the result
-    res.json({ message: result.recordset[0].message });
+     return res.status(200).json({
+      message: "you booked successfully"
+     })
   } catch (error) {
     console.error("Error creating booking:", error);
     res.status(500).json({ message: "Error creating booking" });

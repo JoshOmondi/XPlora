@@ -1,27 +1,19 @@
--- CREATE PROCEDURE CreateBooking(
---     @p_tourist_name VARCHAR(255),
---     @p_tour_id INT,
---     @p_booking_date DATE
--- )
--- AS
--- BEGIN
---     DECLARE @available_seats INT;
+-- CreateBooking stored procedure
+--use TOUR
+ALTER PROCEDURE CreateBooking(
+  @booking_id varchar(250),
+  @tourist_name VARCHAR(200),
+  @tour_id INT,
+  @booking_date DATE,
+  @total_seats INT,
+  @price DECIMAL(10, 2),
+  @tour_name VARCHAR(255)
+)
+AS
+BEGIN
+ 
+  -- Insert the new booking
+  INSERT INTO Bookings (booking_id, tourist_name, tour_id, booking_date, total_seats, price, tour_name)
+  VALUES (@booking_id, @tourist_name, @tour_id, @booking_date, @total_seats, @price, @tour_name);
 
---     SELECT @available_seats = (SELECT total_seats - COUNT(*) AS available_seats
---                                 FROM Bookings
---                                 WHERE tour_id = @p_tour_id
---                                       AND booking_date = @p_booking_date
---                                 GROUP BY total_seats);
-
---     IF @available_seats > 0
---     BEGIN
---         INSERT INTO Bookings (tourist_name, tour_id, booking_date, total_seats)
---         VALUES (@p_tourist_name, @p_tour_id, @p_booking_date, @available_seats);
-
---         SELECT 'Booking successful' AS message;
---     END
---     ELSE
---     BEGIN
---         SELECT 'No available seats for the selected tour and date' AS message;
---     END
--- END;
+END;
